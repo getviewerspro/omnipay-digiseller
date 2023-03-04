@@ -10,8 +10,6 @@
 
 namespace Omnipay\Digiseller\Message;
 
-use League\Omnipay\Common\Locale;
-
 /**
  * Digiseller Abstract Request.
  */
