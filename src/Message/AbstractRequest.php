@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2023, getViewersPRO (https://getviewers.pro/)
  */
 
-use Omnipay\Digiseller\Common\Locale;
+use League\Omnipay\Common\Locale;
 
 namespace Omnipay\Digiseller\Message;
 
