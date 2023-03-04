@@ -22,7 +22,7 @@ class PurchaseRequest extends AbstractRequest
         return array_filter([
             'id_d'          => $this->getPurse(),
             'payment_id'    => $this->getTransactionId(),
-            'lang'          => $this->request->getLocale(),
+            'lang'          => $this->getLocale(),
             'a'             => $this->getAmount(),
             'd'             => $this->getDescription(),
             'p'             => $this->getPaymentMethod(),
