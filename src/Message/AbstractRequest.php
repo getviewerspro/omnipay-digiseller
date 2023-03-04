@@ -18,6 +18,25 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $zeroAmountAllowed = false;
 
     /**
+     * Get the purse.
+     * @return string purse
+     */
+    public function getPurse()
+    {
+        return $this->getParameter('purse');
+    }
+
+    /**
+     * Set the purse.
+     * @param string $purse purse
+     * @return self
+     */
+    public function setPurse($value)
+    {
+        return $this->setParameter('purse', $value);
+    }
+
+    /**
      * Get the secret key.
      * @return string secret key
      */
