@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2023, getViewersPRO (https://getviewers.pro/)
  */
 
-use League\Omnipay\Common\Locale;
-
 namespace Omnipay\Digiseller\Message;
+
+use League\Omnipay\Common\Locale;
 
 /**
  * Digiseller Abstract Request.
