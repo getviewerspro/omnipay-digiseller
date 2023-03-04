@@ -1,14 +1,14 @@
 <?php
 /**
- * Enot driver for Omnipay PHP payment library
+ * Digiseller driver for Omnipay PHP payment library
  *
- * @link      https://github.com/getviewerspro/omnipay-enot
- * @package   omnipay-enot
+ * @link      https://github.com/getviewerspro/omnipay-digiseller
+ * @package   omnipay-digiseller
  * @license   MIT
- * @copyright Copyright (c) 2020, getViewersPRO (https://getviewers.pro/)
+ * @copyright Copyright (c) 2023, getViewersPRO (https://getviewers.pro/)
  */
 
-namespace Omnipay\Enot\Message;
+namespace Omnipay\Digiseller\Message;
 
 class PurchaseRequest extends AbstractRequest
 {
@@ -16,31 +16,28 @@ class PurchaseRequest extends AbstractRequest
     {
         $this->validate(
             'purse',
-            'amount', 
-            'transactionId'
+            'amount'
         );
 
         return array_filter([
-            'm'             => $this->getPurse(),
-            'oa'            => $this->getAmount(),
-            'o'             => $this->getTransactionId(),
+            'id_d'          => $this->getPurse(),
+            'payment_id'    => $this->getTransactionId(),
+            'a'             => $this->getAmount(),
             's'             => $this->calculateSignature(),
-            'c'             => $this->getDescription(),
+            'd'             => $this->getDescription(),
             'p'             => $this->getPaymentMethod(),
             'cr'            => $this->getCurrency(),
-            'paymentMethod' =>  $this->getPaymentMethod() // for QIWI oplata.to
+            'lang'          => $this->getLocale()
         ]);
     }
 
     public function calculateSignature()
     {
-        return md5(implode(':', [
+        return hash('sha256', implode(';', [
+            $this->request->getSign(),
             $this->getPurse(),
-            $this->getAmount(),
-            $this->getSign(),
             $this->getTransactionId()
         ]));
-
     }
 
     public function sendData($data)
