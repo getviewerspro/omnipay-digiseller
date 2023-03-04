@@ -19,8 +19,6 @@ class PurchaseRequest extends AbstractRequest
             'amount'
         );
 
-        info('Purse:'.$this->getPurse());
-
         return array_filter([
             'id_d'          => $this->getPurse(),
             'payment_id'    => $this->getTransactionId(),
