@@ -76,14 +76,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function setLocale($value)
     {
-        if (is_string($value)) {
-            $value = Locale::parse($value);
-        }
-
-        if (! $value instanceof Locale) {
-            throw new InvalidRequestException('A valid Locale is required');
-        }
-
         return $this->setParameter('locale', $value);
     }
 }
