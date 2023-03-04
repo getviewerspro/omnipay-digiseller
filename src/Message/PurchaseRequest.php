@@ -22,22 +22,12 @@ class PurchaseRequest extends AbstractRequest
         return array_filter([
             'id_d'          => $this->getPurse(),
             'payment_id'    => $this->getTransactionId(),
+            'lang'          => $this->getLocale(),
             'a'             => $this->getAmount(),
-            's'             => $this->calculateSignature(),
             'd'             => $this->getDescription(),
             'p'             => $this->getPaymentMethod(),
-            'cr'            => $this->getCurrency(),
-            'lang'          => $this->getLocale()
+            'cr'            => $this->getCurrency()
         ]);
-    }
-
-    public function calculateSignature()
-    {
-        return hash('sha256', implode(';', [
-            $this->request->getSign(),
-            $this->getPurse(),
-            $this->getTransactionId()
-        ]));
     }
 
     public function sendData($data)
