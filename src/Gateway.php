@@ -58,7 +58,7 @@ class Gateway extends AbstractGateway
      * Get the unified secret key.
      * @return string secret key
      */
-    public function getApiDAta($value)
+    public function setApiDAta($value)
     {
         return $this->setParameter('api_data', $value);
     }
