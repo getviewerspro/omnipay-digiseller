@@ -31,6 +31,25 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $purse purse
      * @return self
      */
+    public function setApiData($value)
+    {
+        return $this->setParameter('api_data', $value);
+    }
+
+    /**
+     * Get the secret key.
+     * @return string secret key
+     */
+    public function getApiData()
+    {
+        return $this->getParameter('api_data');
+    }
+
+    /**
+     * Set the purse.
+     * @param string $purse purse
+     * @return self
+     */
     public function setPurse($value)
     {
         return $this->setParameter('purse', $value);
