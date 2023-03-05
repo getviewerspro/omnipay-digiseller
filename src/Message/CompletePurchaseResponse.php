@@ -88,6 +88,6 @@ class CompletePurchaseResponse extends AbstractResponse
     
     public function getMoney()
     {
-        return (string)$this->data['amount_usd']. 'USD';
+        return (string)$this->data['amount_usd']. ' USD';
     }
 }
