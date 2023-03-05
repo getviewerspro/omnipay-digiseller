@@ -38,6 +38,11 @@ class CompletePurchaseResponse extends AbstractResponse
         $this->customFields = base64_decode($this->data['through']);
     }
 
+    public function getSign()
+    {
+        return $this->data['sha256'];
+    }
+
     public function isSuccessful()
     {
         return true;
