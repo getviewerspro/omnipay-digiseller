@@ -33,13 +33,13 @@ class CompletePurchaseResponse extends AbstractResponse
         $this->data    = $data;
         $this->apiData = $this->request->getApiData();
 
-        dd($this->apiData);
+        /*
+        Comment becouse get data by api request to merchant, don't need check
 
         if ($this->getSign() !== $this->calculateSignature()) {
             throw new InvalidResponseException('Invalid hash');
         }
-
-        $this->customFields = base64_decode($this->data['through']);
+        */
     }
 
     public function getSign()
@@ -63,12 +63,12 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getTransactionId()
     {
-        return $this->data['id_i'];
+        return $this->data['query_string']['payment_id'];
     }
 
     public function getTransactionReference()
     {
-        return $this->customFields['payment_id'];
+        return $this->data['inv'];
     }
 
     public function getPurse()
@@ -78,16 +78,16 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getAmount()
     {
-        return (string)$this->data['amount'];
+        return (string)$this->data['cnt_goods'];
     }  
 
     public function getCurrency()
     {
-        return (string)$this->data['curr'];
+        return 'RUB';
     }    
     
     public function getMoney()
     {
-        return $this->getAmount().' '. $this->getCurrency();
+        return (string)$this->data['amount_usd']. 'USD';
     }
 }
