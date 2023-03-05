@@ -30,7 +30,7 @@ class CompletePurchaseResponse extends AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-        $this->data    = $data;
+        $this->data    = $this->request->getApiData(); //$data;
         $this->apiData = $this->request->getApiData();
 
         /*
