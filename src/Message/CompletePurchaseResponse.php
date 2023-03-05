@@ -25,11 +25,15 @@ class CompletePurchaseResponse extends AbstractResponse
     protected $request;
 
     protected $customFields;
+    protected $apiData;
 
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
         $this->data    = $data;
+        $this->apiData = $this->request->getApiData();
+
+        dd($this->apiData);
 
         if ($this->getSign() !== $this->calculateSignature()) {
             throw new InvalidResponseException('Invalid hash');
