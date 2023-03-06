@@ -42,38 +42,14 @@ class CompletePurchaseResponse extends AbstractResponse
         */
     }
 
-    public function getSign()
-    {
-        return $this->data['sha256'];
-    }
-
     public function isSuccessful()
     {
         return true;
     }
 
-    public function calculateSignature()
-    {
-        return hash('sha256', implode(';', [
-            $this->request->getSign(),
-            $this->getPurse(),
-            $this->getTransactionId()
-        ]));
-    }
-
     public function getTransactionId()
     {
         return $this->data['query_string']['payment_id'];
-    }
-
-    public function getTransactionReference()
-    {
-        return $this->data['inv'];
-    }
-
-    public function getPurse()
-    {
-        return $this->data['id_d'];
     }
 
     public function getAmount()
@@ -88,6 +64,34 @@ class CompletePurchaseResponse extends AbstractResponse
     
     public function getMoney()
     {
-        return (string)$this->data['amount_usd']. ' USD';
+        return (string)$this->getAmount();
+    }
+
+
+
+// - - - Don't use
+
+    public function getPurse()
+    {
+        return $this->data['id_d'];
+    }
+
+    public function getTransactionReference()
+    {
+        return $this->data['inv'];
+    }
+
+    public function getSign()
+    {
+        return $this->data['sha256'];
+    }
+    
+    public function calculateSignature()
+    {
+        return hash('sha256', implode(';', [
+            $this->request->getSign(),
+            $this->getPurse(),
+            $this->getTransactionId()
+        ]));
     }
 }
