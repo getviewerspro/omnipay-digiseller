@@ -59,7 +59,7 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getCurrency()
     {
-        return 'RUB';
+        return 'USD';
     }    
     
     public function getMoney()
