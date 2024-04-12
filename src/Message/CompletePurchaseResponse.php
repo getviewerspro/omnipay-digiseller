@@ -64,7 +64,7 @@ class CompletePurchaseResponse extends AbstractResponse
     
     public function getMoney()
     {
-        return (string)$this->getAmount();
+        return (string)$this->getAmount() . ' ' . $this->getCurrency();
     }
 
 
